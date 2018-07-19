@@ -1,9 +1,9 @@
 package com.solarexsoft.testmeituanfloat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements ViewTreeObserver.OnGlobalLayoutListener{
     public static final String TAG = "Solarex";
@@ -33,35 +34,6 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         rl_main.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            sv_main.setOnScrollChangeListener(new OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int
-                        oldScrollY) {
-                    if (scrollY < mockY) {
-                        tv_real.setY(v_mock.getY());
-                    } else {
-                        tv_real.setY(scrollY);
-                    }
-                }
-            });
-        } else {
-            rl_main.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    makeRealScroll(sv_main.getScrollY());
-                }
-            });
-        }*/
-        /*
-        tv_real.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                makeRealScroll(sv_main.getScrollY());
-            }
-        });
-        */
         sv_main.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int
@@ -75,18 +47,18 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         });
     }
 
-    private void makeRealScroll(int scrollY) {
-        Log.d(TAG, "makeRealScroll scrollY = " + scrollY);
-        Log.d(TAG, "makeRealScroll Y:" + v_mock.getY() + ",top: " + v_mock.getTop());
-        int realTop = Math.max(scrollY, v_mock.getTop());
-        tv_real.layout(0, realTop, tv_real.getWidth(), realTop + tv_real.getHeight());
-    }
-
     @Override
     public void onGlobalLayout() {
         if (isFirst) {
             mockY = v_mock.getY();
             tv_real.setY(mockY);
+            isFirst = false;
         }
+    }
+
+    @OnClick(R.id.v_place)
+    public void click(){
+        Intent intent = new Intent(this, SecondActivity.class);
+        this.startActivity(intent);
     }
 }

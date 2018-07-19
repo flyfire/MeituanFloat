@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.solarexsoft.testmeituanfloat.SolarexScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ssv_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/v_place"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/colorPrimary"/>
+
+        <View
+            android:id="@+id/v_mock"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/v_place"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_real"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="realrealerealrealrealrealrealrealrealreal"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/v_mock"
+            android:text="@string/quanxue"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+</com.solarexsoft.testmeituanfloat.SolarexScrollView>
