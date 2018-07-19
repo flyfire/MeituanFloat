@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     @OnClick(R.id.v_place)
     public void click(){
         Intent intent = new Intent(this, SecondActivity.class);
-        this.startActivity(intent);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            this.startActivity(intent);
+        }
     }
 }
